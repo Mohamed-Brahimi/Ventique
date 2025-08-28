@@ -1,7 +1,7 @@
 <?php
 require 'Modele.php';
 try {
-    $antique = getAntique();
+    $antiques = getAntiques();
     require 'vueAccueil.php';
 } catch (Exception $e) {
     $msgErreur = $e->getMessage();

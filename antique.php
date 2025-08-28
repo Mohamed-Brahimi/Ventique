@@ -2,7 +2,7 @@
 try {
     if (isset($_GET['id'])) {
         $id = intval($_GET['id']);
-        if ($id != 0) {
+        if ($id >= 0) {
             $antique = getAntique($id);
             $offres = getOffres($id);
             require 'vueAntique.php';

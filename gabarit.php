@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
 
-    <title><?= $titre ?> </title>
+    <title><?=$titre ?> </title>
 </head>
 
 <body>
