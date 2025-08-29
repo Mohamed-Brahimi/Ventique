@@ -19,7 +19,11 @@
     <form action="offres.php" method="post">
         <h2>Ajouter une offre</h2>
         <p>
-            <label for="utilisateur_id">Utilisateur Id</label> : <input type="number" name="utilisateur_id" id="utilisateur_id">
+            <select name="utilisateur_id" id="utilisateur_id">
+                <?php foreach ($utils as $utilisateur): ?>
+                    <option value="<?= $utilisateur['id'] ?>"><?= $utilisateur['nom'] ?></option>
+                <?php endforeach; ?>
+            </select>
             <br> <br>
             <label for="prix_propose">Prix Proposé</label> :  <input type="number" name="prix_propose" id="prix_propose" /><br />
             <input type="hidden" name="antique_id" value="<?= $antique['id'] ?>" /><br />
