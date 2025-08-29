@@ -5,6 +5,12 @@ try {
         if ($id >= 0) {
             $antique = getAntique($id);
             $offres = getOffres($id);
+            $utilisateurs = getUtilisateurs();
+                $utils = array();
+                foreach ($utilisateurs as $utilisateur):
+                    $utils[$utilisateur['id']] = $utilisateur;
+                endforeach;
+
             require 'vueAntique.php';
         } else { 
             throw new Exception("L'id de l'antique est incorrecte.");

@@ -10,6 +10,7 @@ try {
             if ($id != 0) {
                 $antique = getAntique($id);
                 $offre = $_POST;
+                
                 setOffre($offre);
                 header('Location: antique.php?id=' . $id);
                 

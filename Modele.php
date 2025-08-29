@@ -38,3 +38,17 @@ function setOffre($offre) {
     $offres-> execute(array($offre['antique_id'],$offre['utilisateur_id'],$offre['prix_propose']));
     return $offres;
 }
+function getUtilisateur($idUtilisateur) {
+    $bdd = getBdd();
+    $utilisateur = $bdd-> prepare('SELECT * FROM utilisateurs WHERE id LIKE ?');
+    $utilisateur -> execute(array($idUtilisateur));
+    if ($utilisateur-> rowCount() == 1)
+        return $utilisateur -> fetch();
+    else
+        throw new Exception("Aucun utilisateur ne correspond à l'identifiant `$idUtilisateur`");
+}
+function getUtilisateurs() {
+    $bdd = getBdd();
+    $utilisateurs = $bdd-> query('SELECT * FROM utilisateurs');
+    return $utilisateurs;
+}

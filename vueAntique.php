@@ -4,6 +4,7 @@
 <header>
     <h1 class="nomAntique"><?= $antique['nom']?></h1>
     <h3 class=""><?= $antique['description']?></h3>
+    <h3>offert par <?=$utils[$antique['utilisateur_id']]['nom']?></h3>
 </header>    
     <p><?= $antique['prix']?></p>
 
@@ -13,7 +14,7 @@
     <h1  id="SectionOffre"> Offres : </h1>
 </header>
  <?php foreach ($offres as $offre): ?>
-    <p><?= $offre['dateOffre']?>,<?= $offre['utilisateur_id']?> : offre <?= $offre['prix_propose']?></p>
+    <p><?= $offre['dateOffre']?>,<?= $utils[$offre['utilisateur_id']]['nom']?> : offre <?= $offre['prix_propose']?></p>
     <?php endforeach; ?> 
     <form action="offres.php" method="post">
         <h2>Ajouter une offre</h2>
@@ -28,3 +29,4 @@
 
     <?php $contenu = ob_get_clean(); ?>
 <?php require 'gabarit.php';?>
+ 
