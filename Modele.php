@@ -2,11 +2,11 @@
 //Permet la connection à la base de données
 function getBdd()
 {
-    try{
-    $bdd = new PDO("mysql:host=localhost;dbname=ventique;charset=utf8", "root", "mysql", array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+    try {
+        $bdd = new PDO("mysql:host=localhost;dbname=ventique;charset=utf8", "root", "mysql", array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 
     } catch (Exception $e) {
-        die('Erreur : Impossible de se connecter à la base de données.'. $e ->getMessage());
+        die('Erreur : Impossible de se connecter à la base de données.' . $e->getMessage());
     }
     return $bdd;
 }
@@ -26,7 +26,7 @@ function getOffres($idAntique)
 {
     $bdd = getBdd();
     $offres = $bdd->prepare("select offres.id, offres.dateOffre, offres.prix_propose, utilisateurs.nom as nomUtil
-     from offres INNER JOIN utilisateurs on offres.utilisateur_id = utilisateurs.id where antique_id LIKE ?");
+     from offres INNER JOIN utilisateurs on offres.utilisateur_id = utilisateurs.id where antique_id LIKE ? ORDER BY dateOffre DESC");
     $offres->execute(array($idAntique));
     return $offres;
 }
@@ -34,32 +34,36 @@ function getAntiques()
 {
     $bdd = getBdd();
     $antiques = $bdd->prepare("SELECT * FROM antiques ORDER BY id DESC");
-    $antiques-> execute();
+    $antiques->execute();
     return $antiques;
 }
 
-function setOffre($offre) {
+function setOffre($offre)
+{
     $bdd = getBdd();
-    $offres = $bdd -> prepare('INSERT INTO offres (antique_id,utilisateur_id,prix_propose,dateOffre) VALUES (?, ?, ?, NOW()) ');
-    $offres-> execute(array($offre['antique_id'],$offre['utilisateur_id'],$offre['prix_propose']));
+    $offres = $bdd->prepare('INSERT INTO offres (antique_id,utilisateur_id,prix_propose,dateOffre) VALUES (?, ?, ?, NOW()) ');
+    $offres->execute(array($offre['antique_id'], $offre['utilisateur_id'], $offre['prix_propose']));
     return $offres;
 }
-function getUtilisateur($idUtilisateur) {
+function getUtilisateur($idUtilisateur)
+{
     $bdd = getBdd();
-    $utilisateur = $bdd-> prepare('SELECT * FROM utilisateurs WHERE id LIKE ?');
-    $utilisateur -> execute(array($idUtilisateur));
-    if ($utilisateur-> rowCount() == 1)
-        return $utilisateur -> fetch();
+    $utilisateur = $bdd->prepare('SELECT * FROM utilisateurs WHERE id LIKE ?');
+    $utilisateur->execute(array($idUtilisateur));
+    if ($utilisateur->rowCount() == 1)
+        return $utilisateur->fetch();
     else
         throw new Exception("Aucun utilisateur ne correspond à l'identifiant `$idUtilisateur`");
 }
-function getUtilisateurs() {
+function getUtilisateurs()
+{
     $bdd = getBdd();
-    $utilisateurs = $bdd-> query('SELECT * FROM utilisateurs');
+    $utilisateurs = $bdd->query('SELECT * FROM utilisateurs');
     return $utilisateurs;
 }
-function supprimerOffre($id_offre) {
-       $bdd = getBdd();
-       $request = $bdd -> prepare('DELETE FROM offres WHERE id = ?');
-       $request -> execute(array($id_offre));
+function supprimerOffre($id_offre)
+{
+    $bdd = getBdd();
+    $request = $bdd->prepare('DELETE FROM offres WHERE id = ?');
+    $request->execute(array($id_offre));
 }
