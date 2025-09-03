@@ -27,8 +27,8 @@ function getOffres($idAntique)
 function getAntiques()
 {
     $bdd = getBdd();
-    $antiques = $bdd->query("SELECT * FROM antiques ORDER BY id DESC");
-    $antiques-> fetch(PDO::FETCH_ASSOC);
+    $antiques = $bdd->prepare("SELECT * FROM antiques ORDER BY id DESC");
+    $antiques-> execute();
     return $antiques;
 }
 

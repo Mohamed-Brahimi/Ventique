@@ -2,7 +2,7 @@
 <?php ob_start(); ?>
 <?php foreach ($antiques as $antique)
     : ?>
-<?php var_dump($antique); ?>
+<!--<?php var_dump($antique); ?> -->
 
 <antique>
     <header>
