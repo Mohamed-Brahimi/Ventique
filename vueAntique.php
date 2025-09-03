@@ -14,7 +14,9 @@
     <h1  id="SectionOffre"> Offres : </h1>
 </header>
  <?php foreach ($offres as $offre): ?>
-    <p><?= $offre['dateOffre']?>,<?= $utils[$offre['utilisateur_id']]['nom']?> : offre <?= $offre['prix_propose']?></p>
+    <p><a href="<?= "offres_supprimer.php?id=" . $offre['id'] . "&aid=" . $antique['id'] ?>">[supprimer]</a></p>
+    
+    <p><?= $offre['dateOffre']?>,<?= $offre['nomUtil']?> : offre <?= $offre['prix_propose']?></p>
     <?php endforeach; ?> 
     <form action="offres.php" method="post">
         <h2>Ajouter une offre</h2>

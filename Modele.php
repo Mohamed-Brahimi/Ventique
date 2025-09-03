@@ -2,7 +2,12 @@
 //Permet la connection à la base de données
 function getBdd()
 {
+    try{
     $bdd = new PDO("mysql:host=localhost;dbname=ventique;charset=utf8", "root", "mysql", array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+
+    } catch (Exception $e) {
+        die('Erreur : Impossible de se connecter à la base de données.'. $e ->getMessage());
+    }
     return $bdd;
 }
 // Retourne une antique selon l'id spécifié
@@ -20,7 +25,8 @@ function getAntique($idAntique)
 function getOffres($idAntique)
 {
     $bdd = getBdd();
-    $offres = $bdd->prepare("select * from offres where antique_id LIKE ?");
+    $offres = $bdd->prepare("select offres.id, offres.dateOffre, offres.prix_propose, utilisateurs.nom as nomUtil
+     from offres INNER JOIN utilisateurs on offres.utilisateur_id = utilisateurs.id where antique_id LIKE ?");
     $offres->execute(array($idAntique));
     return $offres;
 }
@@ -51,4 +57,9 @@ function getUtilisateurs() {
     $bdd = getBdd();
     $utilisateurs = $bdd-> query('SELECT * FROM utilisateurs');
     return $utilisateurs;
+}
+function supprimerOffre($id_offre) {
+       $bdd = getBdd();
+       $request = $bdd -> prepare('DELETE FROM offres WHERE id = ?');
+       $request -> execute(array($id_offre));
 }
