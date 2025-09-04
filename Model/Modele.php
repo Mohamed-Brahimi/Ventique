@@ -53,6 +53,13 @@ function setOffre($offre)
     $offres->execute(array($offre['antique_id'], $offre['utilisateur_id'], $offre['prix_propose']));
     return $offres;
 }
+function setAntique($antique)
+{
+    $bdd = getBdd();
+    $antiques = $bdd->prepare('INSERT INTO antiques (utilisateur_id,nom,description,prix,image) VALUES (?, ?, ?, ?, "image.png") ');
+    $antiques->execute(array($antique['utilisateur_id'], $antique['nom'], $antique['description'], $antique['prix']));
+    return $antiques;
+}
 function getUtilisateur($idUtilisateur)
 {
     $bdd = getBdd();

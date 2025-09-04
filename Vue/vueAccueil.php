@@ -1,5 +1,7 @@
 <?php $titre = 'Ventique'; ?>
 <?php ob_start(); ?>
+<a href="index.php?action=ajouter">Ajouter une antique</a>
+
 <?php foreach ($antiques as $antique)
 : ?>
 

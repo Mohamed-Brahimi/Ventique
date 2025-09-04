@@ -1,7 +1,6 @@
 <?php
 require 'Controleur/controleur.php';
 try {
-    var_dump($_GET);
     if (isset($_GET['action'])) {
 
         if ($_GET['action'] == 'antique') {
@@ -40,6 +39,12 @@ try {
                     throw new Exception("Identifiant d'offre incorrecte");
             } else
                 throw new Exception("Aucun identifiant d'offre");
+        } else if ($_GET['action'] == 'ajouter') {
+            creerAntique();
+
+        } else if ($_GET['action'] == 'creerAntique') {
+            creationAntique();
+
         } else
             throw new Exception("Action invalide");
     } else {

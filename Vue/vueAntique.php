@@ -26,8 +26,8 @@
             <?php endforeach; ?>
         </select>
         <br> <br>
-        <label for="prix_propose">Prix Proposé</label> : <input type="number" name="prix_propose"
-            id="prix_propose" /><br />
+        <label for="prix_propose">Prix Proposé</label> : <input type="number" name="prix_propose" id="prix_propose"
+            required /><br />
         <input type="hidden" name="antique_id" value="<?= $antique['id'] ?>" /><br />
         <input type="submit" value="Proposer" />
     </p>

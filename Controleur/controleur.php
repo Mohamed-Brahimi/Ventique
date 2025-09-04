@@ -30,6 +30,12 @@ function offre()
     header('Location: index.php?action=antique&id=' . $id);
 
 }
+function creationAntique()
+{
+    $antique = $_POST;
+    setAntique($antique);
+    header('Location: index.php');
+}
 function suppressionOffre()
 {
     $oid = intval($_GET['id']);
@@ -48,3 +54,13 @@ function erreur($msgErreur)
 {
     require 'Vue/vueErreur.php';
 }
+function creerAntique()
+{
+    $utilisateurs = getUtilisateurs();
+    $utils = array();
+    foreach ($utilisateurs as $utilisateur):
+        $utils[$utilisateur['id']] = $utilisateur;
+    endforeach;
+    require 'Vue/vueAjoutAntique.php';
+}
+
