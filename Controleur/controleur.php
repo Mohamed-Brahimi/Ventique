@@ -4,13 +4,10 @@ require 'Model/Modele.php';
 // Afficher la liste des antiques
 function acceuil()
 {
-    try {
-        $antiques = getAntiques();
-        require 'Vue/vueAccueil.php';
-    } catch (Exception $e) {
-        $msgErreur = $e->getMessage();
-        require 'vueErreur.php';
-    }
+
+    $antiques = getAntiques();
+    require 'Vue/vueAccueil.php';
+
 }
 function antiques($id)
 {
@@ -24,18 +21,30 @@ function antiques($id)
 
     require 'Vue/vueAntique.php';
 }
-function offre($id)
+function offre()
 {
-    $uid = intval($_POST['utilisateur_id']);
     $id = intval($_POST['antique_id']);
-    $antique = getAntique($id);
     $offre = $_POST;
 
     setOffre($offre);
     header('Location: index.php?action=antique&id=' . $id);
 
 }
+function suppressionOffre()
+{
+    $oid = intval($_GET['id']);
+    $aid = intval($_GET['aid']);
+    supprimerOffre($oid);
+    header('Location: index.php?action=antique&id=' . $aid);
+
+}
+function confirmer($oid, $aid)
+{
+    $offre = getOffre($oid);
+    $antique = getAntique($aid);
+    require 'Vue/vueConfirmer.php';
+}
 function erreur($msgErreur)
 {
-    require 'vueErreur.php';
+    require 'Vue/vueErreur.php';
 }

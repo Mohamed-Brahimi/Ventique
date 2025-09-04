@@ -30,6 +30,14 @@ function getOffres($idAntique)
     $offres->execute(array($idAntique));
     return $offres;
 }
+function getOffre($id)
+{
+    $bdd = getBdd();
+    $offres = $bdd->prepare("select offres.id, offres.dateOffre, offres.prix_propose, utilisateurs.nom as nomUtil
+     from offres INNER JOIN utilisateurs on offres.utilisateur_id = utilisateurs.id where offres.id LIKE ?  ORDER BY dateOffre DESC");
+    $offres->execute(array($id));
+    return $offres->fetch();
+}
 function getAntiques()
 {
     $bdd = getBdd();
