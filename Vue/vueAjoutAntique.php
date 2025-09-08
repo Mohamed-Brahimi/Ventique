@@ -14,7 +14,7 @@
         <label for="nom">Nom de l'article</label> : <input type="text" name="nom" id="nom" required><br />
         <label for="description">Description de l'article</label> : <input type="text" name="description"
             id="description" required><br />
-        <label for="prix">Prix minimal : </label> <input type="number" name="prix" id="prix" required>
+        <label for="prix">Prix minimal : </label> <input type="number" name="prix" id="prix" required> <br />
         <input type="submit" value="Proposer" />
         <a href="index.php?"><input type="button" value="Annuler"></a>
     </p>

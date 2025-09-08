@@ -1,0 +1,28 @@
+<?php
+require_once "Modele/Modele.php";
+
+class Antique extends Modele
+{
+    // Retourne une antique selon l'id spécifié
+    function getAntique($idAntique)
+    {
+        $sql = "SELECT * FROM antiques WHERE id LIKE ?";
+        $antique = $this->executerRequete($sql, $idAntique);
+        if ($antique->rowCount() == 1)
+            return $antique->fetch();
+        else
+            throw new Exception("Aucun antique correspond à l'identifiant `$idAntique`");
+    }
+    function getAntiques()
+    {
+        $sql = "SELECT * FROM antiques WHERE id LIKE ?" . 'ORDER by id desc';
+        $antiques = $this->executerRequete($sql);
+        return $antiques;
+    }
+    function setAntique($antique)
+    {
+        $sql = 'INSERT INTO antiques (utilisateur_id,nom,description,prix,image) VALUES (?, ?, ?, ?, "image.png") ';
+        $antiques = $this->executerRequete($sql, $antique);
+        return $antiques;
+    }
+}
