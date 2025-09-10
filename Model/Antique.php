@@ -7,7 +7,7 @@ class Antique extends Modele
     function getAntique($idAntique)
     {
         $sql = "SELECT * FROM antiques WHERE id LIKE ?";
-        $antique = $this->executerRequete($sql, $idAntique);
+        $antique = $this->executerRequete($sql, array($idAntique));
         if ($antique->rowCount() == 1)
             return $antique->fetch();
         else
@@ -22,7 +22,7 @@ class Antique extends Modele
     function setAntique($antique)
     {
         $sql = 'INSERT INTO antiques (utilisateur_id,nom,description,prix,image) VALUES (?, ?, ?, ?, "image.png") ';
-        $antiques = $this->executerRequete($sql, $antique);
+        $antiques = $this->executerRequete($sql, array($antique));
         return $antiques;
     }
 }

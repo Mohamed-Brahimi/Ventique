@@ -1,10 +1,10 @@
 <?php
-if (isset($_GET['test'])) {
-    if ($_GET['test'] == 'modeleAntique') {
+if (isset($_GET['action'])) {
+    if ($_GET['action'] == 'modeleAntique') {
         require 'Tests/Modeles/testAntique.php';
-    } else if ($_GET['test'] == 'modeleOffre') {
+    } else if ($_GET['action'] == 'modeleOffre') {
         require 'Tests/Modeles/testOffre.php';
-    } else if ($_GET['test'] == 'modeleUser') {
+    } else if ($_GET['action'] == 'modeleUser') {
         require 'Tests/Modeles/testUtilisteur.php';
 
     } else {
@@ -15,12 +15,12 @@ if (isset($_GET['test'])) {
 <h3>Tests de Modèles</h3>
 <ul>
     <li>
-        <a href="tests.php?test=modeleAntique">Article</a>
+        <a href="test.php?action=modeleAntique">Antique</a>
     </li>
     <li>
-        <a href="tests.php?test=modeleOffre">Commentaire</a>
+        <a href="test.php?action=modeleOffre">Offre</a>
     </li>
     <li>
-        <a href="tests.php?test=modeleUser">Type</a>
+        <a href="test.php?action=modeleUser">User</a>
     </li>
 </ul>
