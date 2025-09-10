@@ -22,7 +22,14 @@ class Offre extends Modele
     }
     function supprimerOffre($id_offre)
     {
-        $sql = 'DELETE FROM offres WHERE id = ?';
-        $this->executerRequete($sql, array($id_offre));
+        $sql = 'UPDATE offres SET efface = 1 WHERE id = ?';
+        $result = $this->executerRequete($sql, array($id_offre));
+        return $result;
+    }
+    function retablirOffre($id_offre)
+    {
+        $sql = 'UPDATE offres SET efface = 0 WHERE id = ?';
+        $result = $this->executerRequete($sql, array($id_offre));
+        return $result;
     }
 }
