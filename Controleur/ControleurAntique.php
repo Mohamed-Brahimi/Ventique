@@ -1,15 +1,17 @@
 <?php
 
+
 require_once 'Model/Antique.php';
 
 class ControleurAntiques
 {
     private $antique;
-    private $commentaire;
+
 
     public function __construct()
     {
         $this->antique = new Antique();
+
     }
 
     public function antiques()
@@ -24,7 +26,7 @@ class ControleurAntiques
         $antique = $this->antique->getAntique($idAntique);
         // $commentaires = $this->commentaire->getCommentaires($idAntique);
         $vue = new Vue("Antique");
-        $vue->generer(['antique' => $antique,  'erreur' => $erreur]);
+        $vue->generer(['antique' => $antique, 'erreur' => $erreur]);
         // 'commentaires' => $commentaires,
     }
 

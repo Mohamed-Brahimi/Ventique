@@ -1,6 +1,6 @@
 <?php $titre = 'Ventique'; ?>
 <?php ob_start(); ?>
-<a href="index.php?action=ajouter">Ajouter une antique</a>
+<a href="Antique/nouvelArticle">Ajouter une antique</a>
 
 <?php foreach ($antiques as $antique)
 : ?>
@@ -8,7 +8,7 @@
 
     <antique>
         <header>
-            <a href="<?= "index.php?action=antique&id=" . $antique['id'] ?>">
+            <a href="<?= "Antique/antique" . $antique['id'] ?>">
                 <h1 class="nomAntique"><?= $antique['nom'] ?></h1>
             </a>
             <h3 class="descAntique"><?= $antique['description'] ?></h3>

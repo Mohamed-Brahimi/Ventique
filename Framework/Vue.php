@@ -1,34 +1,46 @@
 <?php
 
-class Vue {
+class Vue
+{
 
     // Nom du fichier associé à la vue
     private $fichier;
     // Titre de la vue (défini dans le fichier vue)
     private $titre;
 
-    public function __construct($action) {
+    public function __construct($action, $controlleur = "")
+    {
         // Détermination du nom du fichier vue à partir de l'action
-        $this->fichier = "Vue/vue" . $action . ".php";
+        $fichier = "Vue/";
+        if ($controlleur != "") {
+            $fichier = $fichier . $controlleur . "/";
+        }
+        $this->fichier = $fichier . $action . ".php";
     }
 
     // Génère et affiche la vue
-    public function generer($donnees = NULL) {
+    public function generer($donnees = NULL)
+    {
         // Génération de la partie spécifique de la vue
         $contenu = $this->genererFichier($this->fichier, $donnees);
+        $racineWeb = Configuration::get("racineWeb", "/");
         // Génération du gabarit commun utilisant la partie spécifique
-        $vue = $this->genererFichier('Vue/gabarit.php', array('titre' => $this->titre, 'contenu' => $contenu));
+        $vue = $this->genererFichier('Vue/gabarit.php', array(
+            'titre' => $this->titre,
+            'contenu' => $contenu,
+            'racineWeb' => $racineWeb
+        ));
         // Renvoi de la vue au navigateur
         echo $vue;
     }
 
     // Génère un fichier vue et renvoie le résultat produit
-    private function genererFichier($fichier, $donnees) {
+    private function genererFichier($fichier, $donnees)
+    {
         if (file_exists($fichier)) {
             // Rend les éléments du tableau $donnees accessibles dans la vue
-            if ($donnees != NULL) {
-                extract($donnees);
-            }
+            extract($donnees);
+
             // Démarrage de la temporisation de sortie
             ob_start();
             // Inclut le fichier vue
@@ -39,6 +51,10 @@ class Vue {
         } else {
             throw new Exception("Fichier '$fichier' introuvable");
         }
+    }
+    private function nettoyer($string)
+    {
+        return htmlspecialchars($string, ENT_QUOTES, 'UTF-8', false);
     }
 
 }

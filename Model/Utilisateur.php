@@ -1,7 +1,7 @@
 <?php
-require_once "Model/Modele.php";
+require_once "Framework/Modele.php";
 
-class User extends Modele
+class Utilisateur extends Modele
 {
     // Retourne une antique selon l'id spécifié
     function getUtilisateur($idUtilisateur)

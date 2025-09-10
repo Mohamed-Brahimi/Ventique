@@ -1,5 +1,5 @@
 <?php
-require_once "Model/Modele.php";
+require_once "Framework/Modele.php";
 
 class Offre extends Modele
 {

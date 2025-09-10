@@ -1,118 +1,101 @@
 <?php
 
-/**
- * require_once Controleur/ControleurAntiques
- * require_once Controleur/ControleurOffres
- * require_once Controleur/ControleurUtilisateurs
- */
-require_once 'Controleur/ControleurAntique.php';
-require_once 'Vue/Vue.php';
-
 require_once 'Configuration.php';
 require_once 'Controleur.php';
 require_once 'Requete.php';
 require_once 'Vue.php';
 
+/*
+ * Classe de routage des requêtes entrantes.
+ * 
+ * Inspirée du framework PHP de Nathan Davison
+ * (https://github.com/ndavison/Nathan-MVC)
+ * 
+ * @version 1.0
+ * @author Baptiste Pesquet
+ */
+
 class Router
 {
-    private $ctrlAntiques;
-    // private $ctrlOffres;
-    // private $ctrlUtilisateurs;
 
-    public function __construct()
-    {
-        $this->ctrlAntiques = new ControleurAntiques();
-        // $this->ctrlOffres = new ControleurOffres();
-        // $this->ctrlUtilisateurs = new ControleurUtilisateurs();
-    }
-
-    public function routerRequest()
+    /**
+     * Méthode principale appelée par le contrôleur frontal
+     * Examine la requête et exécute l'action appropriée
+     */
+    public function routerRequete()
     {
         try {
-            if (isset($_GET['action'])) {
-                if ($_GET['action'] == 'antique') {
-                    $id = intval($this->getParametre($_GET, 'id'));
-                    if ($id >= 0) {
-                        $erreur = isset($_GET['erreur']) ? $_GET['erreur'] : '';
-                        $this->ctrlAntiques->antique($id, $erreur);
-                    } else
-                        throw new Exception("Identifiant d'antique incorrecte");
+            // Fusion des paramètres GET et POST de la requête
+            // Permet de gérer uniformément ces deux types de requête HTTP
+            $requete = new Requete(array_merge($_GET, $_POST));
 
-                }
-            
-            } else {
-                $this->ctrlAntiques->antiques();
-            }
+            $controleur = $this->creerControleur($requete);
+            $action = $this->creerAction($requete);
+
+            $controleur->executerAction($action);
         } catch (Exception $e) {
-            $this->erreur($e->getMessage());
+            $this->gererErreur($e);
         }
     }
 
-    private function erreur($msgError)
+    /**
+     * Instancie le contrôleur approprié en fonction de la requête reçue
+     * 
+     * @param Requete $requete Requête reçue
+     * @return / Instance d'un contrôleur
+     * @throws Exception / Si la création du contrôleur échoue
+     */
+    private function creerControleur(Requete $requete)
     {
-        $vue = new Vue("Erreur");
-        $vue->generer(array("msgErreur" => $msgError));
+        // Grâce à la redirection, toutes les URL entrantes sont du type :
+        // index.php?controleur=XXX&action=YYY&id=ZZZ
+        $ctrlAccueil = Configuration::get("defaut");
+        $controleur = $ctrlAccueil;  // Contrôleur par défaut
+        if ($requete->existeParametre('controleur')) {
+            $controleur = $requete->getParametre('controleur');
+            // Première lettre en majuscules
+            $controleur = ucfirst(strtolower($controleur));
+        }
+        // Création du nom du fichier du contrôleur
+        // La convention de nommage des fichiers controleurs est : Controleur/Controleur<$controleur>.php
+        $classeControleur = "Controleur" . $controleur;
+        $fichierControleur = "Controleur/" . $classeControleur . ".php";
+        if (file_exists($fichierControleur)) {
+            // Instanciation du contrôleur adapté à la requête
+            require($fichierControleur);
+            $controleur = new $classeControleur();
+            $controleur->setRequete($requete);
+            return $controleur;
+        } else {
+            throw new Exception("Fichier '$fichierControleur' introuvable");
+        }
     }
 
-    private function getParametre($tableau, $nom)
+    /**
+     * Détermine l'action à exécuter en fonction de la requête reçue
+     * 
+     * @param Requete $requete Requête reçue
+     * @return string Action à exécuter
+     */
+    private function creerAction(Requete $requete)
     {
-        if (isset($tableau[$nom])) {
-            return $tableau[$nom];
-        } else
-            throw new Exception("Parametre '$nom' absent! ");
+        $action = "index";  // Action par défaut
+        if ($requete->existeParametre('action')) {
+            $action = $requete->getParametre('action');
+        }
+        return $action;
     }
+
+    /**
+     * Gère une erreur d'exécution (exception)
+     * 
+     * @param Exception $exception Exception qui s'est produite
+     */
+    private function gererErreur(Exception $exception)
+    {
+        $vue = new Vue('erreur');
+        $erreur = $exception->getMessage();
+        $vue->generer(array('msgErreur' => $erreur));
+    }
+
 }
-
-//  try {
-//     if (isset($_GET['action'])) {
-
-//         if ($_GET['action'] == 'antique') {
-
-//             if (isset($_GET['id'])) {
-//                 $id = intval($_GET['id']);
-//                 if ($id >= 0) {
-//                     antiques($id);
-//                 } else
-//                     throw new Exception("Identifiant d'antique incorrecte");
-//             } else
-//                 throw new Exception("Aucun identifiant d'antique");
-//         } else if ($_GET['action'] == 'offre') {
-//             if (isset($_GET['id'])) {
-//                 if ($id >= 0) {
-//                     offre();
-//                 } else
-//                     throw new Exception("Identifiant d'antique incorrecte");
-//             } else
-//                 throw new Exception("Aucun identifiant d'antique");
-//         } else if ($_GET['action'] == 'supprimerOffre') {
-//             if (isset($_GET['id'])) {
-//                 if ($id >= 0) {
-//                     suppressionOffre();
-//                 } else
-//                     throw new Exception("Identifiant d'offre incorrecte");
-//             } else
-//                 throw new Exception("Aucun identifiant d'offre");
-//         } else if ($_GET['action'] == 'confirmer') {
-//             if (isset($_GET['id'])) {
-//                 $id = intval($_GET['id']);
-//                 $aid = intval($_GET['aid']);
-//                 if ($id >= 0) {
-//                     confirmer($id, $aid);
-//                 } else
-//                     throw new Exception("Identifiant d'offre incorrecte");
-//             } else
-//                 throw new Exception("Aucun identifiant d'offre");
-//         } else if ($_GET['action'] == 'ajouter') {
-//             creerAntique();
-
-//         } else if ($_GET['action'] == 'creerAntique') {
-//             creationAntique();
-
-//         } else
-//             throw new Exception("Action invalide");
-//     } else {
-//         acceuil();
-//     }
-// } catch (Exception $e) {
-//     Erreur($e->getMessage());
-// }
