@@ -9,47 +9,54 @@ require_once 'Controleur/ControleurAntique.php';
 require_once 'Vue/Vue.php';
 
 
- class Router {
+class Router
+{
     private $ctrlAntiques;
     // private $ctrlOffres;
     // private $ctrlUtilisateurs;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->ctrlAntiques = new ControleurAntiques();
         // $this->ctrlOffres = new ControleurOffres();
         // $this->ctrlUtilisateurs = new ControleurUtilisateurs();
     }
 
-    public function routerRequest() {
+    public function routerRequest()
+    {
         try {
             if (isset($_GET['action'])) {
                 if ($_GET['action'] == 'antique') {
-                    $id = intval($this->getParametre($_GET,'id'));
+                    $id = intval($this->getParametre($_GET, 'id'));
                     if ($id >= 0) {
                         antiques($id);
                     } else
                         throw new Exception("Identifiant d'antique incorrecte");
-                        
+
                 }
-                
+
+            } else {
+                $this->ctrlAntiques->antiques();
             }
         } catch (Exception $e) {
             $this->erreur($e->getMessage());
         }
     }
 
-    private function erreur($msgError) {
+    private function erreur($msgError)
+    {
         $vue = new Vue("Erreur");
         $vue->generer(array("msgErreur" => $msgError));
     }
 
-    private function getParametre($tableau, $nom) {
+    private function getParametre($tableau, $nom)
+    {
         if (isset($tableau[$nom])) {
             return $tableau[$nom];
-        } else 
+        } else
             throw new Exception("Parametre '$nom' absent! ");
     }
- }
+}
 
 //  try {
 //     if (isset($_GET['action'])) {

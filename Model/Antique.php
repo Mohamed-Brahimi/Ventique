@@ -15,7 +15,7 @@ class Antique extends Modele
     }
     function getAntiques()
     {
-        $sql = "SELECT * FROM antiques WHERE id LIKE ?" . 'ORDER by id desc';
+        $sql = "SELECT * FROM antiques  ORDER by id desc";
         $antiques = $this->executerRequete($sql);
         return $antiques;
     }

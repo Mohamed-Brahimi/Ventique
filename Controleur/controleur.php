@@ -5,6 +5,7 @@ require 'Model/Modele.php';
 function acceuil()
 {
 
+
     $antiques = getAntiques();
     require 'Vue/vueAccueil.php';
 
