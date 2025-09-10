@@ -8,6 +8,10 @@
 require_once 'Controleur/ControleurAntique.php';
 require_once 'Vue/Vue.php';
 
+require_once 'Configuration.php';
+require_once 'Controleur.php';
+require_once 'Requete.php';
+require_once 'Vue.php';
 
 class Router
 {
@@ -29,12 +33,13 @@ class Router
                 if ($_GET['action'] == 'antique') {
                     $id = intval($this->getParametre($_GET, 'id'));
                     if ($id >= 0) {
-                        antiques($id);
+                        $erreur = isset($_GET['erreur']) ? $_GET['erreur'] : '';
+                        $this->ctrlAntiques->antique($id, $erreur);
                     } else
                         throw new Exception("Identifiant d'antique incorrecte");
 
                 }
-
+            
             } else {
                 $this->ctrlAntiques->antiques();
             }

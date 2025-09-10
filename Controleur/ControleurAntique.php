@@ -22,9 +22,10 @@ class ControleurAntiques
     public function antique($idAntique, $erreur)
     {
         $antique = $this->antique->getAntique($idAntique);
-        $commentaires = $this->commentaire->getCommentaires($idAntique);
+        // $commentaires = $this->commentaire->getCommentaires($idAntique);
         $vue = new Vue("Antique");
-        $vue->generer(['antique' => $antique, 'commentaires' => $commentaires, 'erreur' => $erreur]);
+        $vue->generer(['antique' => $antique,  'erreur' => $erreur]);
+        // 'commentaires' => $commentaires,
     }
 
     public function nouvelAntique()
