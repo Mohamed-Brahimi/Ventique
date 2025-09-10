@@ -3,6 +3,12 @@ require_once "Framework/Modele.php";
 
 class Offre extends Modele
 {
+    function getAllOffres()
+    {
+        $sql = "select * from offres ORDER BY id DESC";
+        $offres = $this->executerRequete($sql);
+        return $offres->fetch();
+    }
     // Retourne une antique selon l'id spécifié
     function getOffre($id)
     {

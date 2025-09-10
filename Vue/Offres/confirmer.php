@@ -1,5 +1,4 @@
-<?php $titre = "Supprimer l'offre"; ?>
-<?php ob_start(); ?>
+<?php $this->$titre = "Supprimer l'offre"; ?>
 <article>
     <header>
         <?= var_dump($offre) ?>
@@ -14,5 +13,3 @@
     <input type="submit" value="Confirmer">
     <a href="index.php?action=antique&id=<?= $antique['id'] ?>"><input type="button" value="Annuler"></a>
 </form>
-<?php $contenu = ob_get_clean(); ?>
-<?php require 'gabarit.php'; ?>

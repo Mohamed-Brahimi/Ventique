@@ -1,8 +1,7 @@
-<?php $titre = "Ajouter une antique"; ?>
-<?php ob_start(); ?>
+<?php $this->$titre = "Ajouter une antique"; ?>
 
-<html>
-<form action="index.php?action=creerAntique" method="post">
+
+<form action="Antiques/ajouter" method="post">
     <h2>Ajouter une offre</h2>
     <p>
         <select name="utilisateur_id" id="utilisateur_id">
@@ -16,10 +15,5 @@
             id="description" required><br />
         <label for="prix">Prix minimal : </label> <input type="number" name="prix" id="prix" required> <br />
         <input type="submit" value="Proposer" />
-        <a href="index.php?"><input type="button" value="Annuler"></a>
     </p>
 </form>
-
-</html>
-<?php $contenu = ob_get_clean() ?>
-<?php require 'gabarit.php' ?>
