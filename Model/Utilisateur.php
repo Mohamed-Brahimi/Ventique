@@ -19,4 +19,11 @@ class Utilisateur extends Modele
         $utilisateurs = $this->executerRequete($sql);
         return $utilisateurs;
     }
+
+    function setUtilisateur($util)
+    {
+        $sql = 'INSERT INTO utilisateur (nom,email,password) VALUES (?, ?, ?) ';
+        $utils = $this->executerRequete($sql, array($util));
+        return $utils;
+    }
 }

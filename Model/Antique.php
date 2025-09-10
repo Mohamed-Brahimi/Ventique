@@ -6,7 +6,8 @@ class Antique extends Modele
     // Retourne une antique selon l'id spécifié
     function getAntique($idAntique)
     {
-        $sql = "SELECT * FROM antiques WHERE id LIKE ?";
+        $sql = "SELECT antiques.id, antiques.utilisateur_id, antiques.nom, antiques.description, antiques.prix, antiques.image, utilisateurs.nom as nomUtil
+         FROM antiques INNER JOIN utilisateurs ON  antiques.utilisateur_id = utilisateurs.id  WHERE antiques.id  LIKE ?";
         $antique = $this->executerRequete($sql, array($idAntique));
         if ($antique->rowCount() == 1)
             return $antique->fetch();

@@ -1,10 +1,8 @@
-<?php $this->$titre = "Ventique - " . $antique['nom']; ?>
-
 <antique>
     <header>
         <h1 class="nomAntique"><?= $antique['nom'] ?></h1>
         <h3 class=""><?= $antique['description'] ?></h3>
-        <h3>offert par <?= $utils[$antique['utilisateur_id']]['nom'] ?></h3>
+        <h3>offert par <?= $antique['nomUtil'] ?></h3>
     </header>
     <p>Avec comme minimum : <?= $antique['prix'] ?> $</p>
 
@@ -13,8 +11,10 @@
 <header>
     <h1 id="SectionOffre"> Offres : </h1>
 </header>
-<?php foreach ($offres as $offre): ?>
-    <?php if ($offre['efface'] == 1): ?>
+<?php
+
+foreach ($offres as $offre): ?>
+    <?php if ($offre['efface'] == 0): ?>
         <p><a href="Offres/confirmer/" <?= $this->nettoyer($offre['id']) ?>>[supprimer]</a>
             <?= $offre['dateOffre'] ?>         <?= $offre['nomUtil'] ?> : <?= $offre['prix_propose'] ?> $</p>
     <?php else: ?>

@@ -3,16 +3,19 @@
 
 require_once 'Model/Antique.php';
 require_once 'Model/Offre.php';
+require_once 'Model/Utilisateur.php';
 
 class ControleurAntiques extends Controleur
 {
     private $antique;
     private $offre;
+    private $utils;
 
     public function __construct()
     {
         $this->antique = new Antique();
         $this->offre = new Offre();
+        $this->utils = new Utilisateur();
     }
 
     public function index()
@@ -28,10 +31,13 @@ class ControleurAntiques extends Controleur
     public function antiques()
     {
         $idAntique = $this->requete->getParametreId("id");
+        var_dump($idAntique);
+
         $antique = $this->antique->getAntique($idAntique);
         $erreur = $this->requete->getSession()->existeAttribut("erreur") ? $this->requete->getsession()->getAttribut("erreur") : '';
         $offres = $this->offre->getOffre($idAntique);
-        $this->genererVue(['antiques' => $antique, 'offre' => $offres, 'erreur' => $erreur]);
+        $utils = $this->utils->getUtilisateurs();
+        $this->genererVue(['antique' => $antique, 'offres' => $offres, 'utils' => $utils, 'erreur' => $erreur]);
     }
 
     public function nouvelAntique()
