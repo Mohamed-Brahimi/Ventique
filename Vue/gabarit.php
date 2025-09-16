@@ -5,11 +5,13 @@
     <meta charset="UTF-8">
 
     <title><?=$titre ?> </title>
+    <link rel='stylesheet' type='text/css' href='Style/style.css' />
+    
 </head>
 
 <body>
     <div id="global">
-        <header>
+        <header id="headerSite">
             <a href="index.php">
                 <h1 id="titreSite">Ventique</h1>
             </a>

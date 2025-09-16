@@ -1,4 +1,4 @@
-<a href="Antiques/ajouter">Ajouter une antique</a>
+<a href="Antiques/ajouter" id="linkAjouterAntique">Ajouter une antique</a>
 
 <?php foreach ($antiques as $antique)
 : ?>

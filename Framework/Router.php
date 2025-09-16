@@ -5,6 +5,7 @@ require_once 'Controleur.php';
 require_once 'Requete.php';
 require_once 'Vue.php';
 
+
 /*
  * Classe de routage des requêtes entrantes.
  * 
