@@ -15,8 +15,8 @@ class Offre extends Modele
         $sql = "select offres.id, offres.dateOffre, offres.prix_propose, offres.efface, utilisateurs.nom as nomUtil
      from offres INNER JOIN utilisateurs on offres.utilisateur_id = utilisateurs.id where antique_id LIKE ? ORDER BY dateOffre DESC";
         $offres = $this->executerRequete($sql, array($id));
-        var_dump($offres->fetch());
-        return $offres->fetch();
+        $resultat = $offres->fetchAll();
+        return $resultat;
     }
 
 
@@ -24,7 +24,7 @@ class Offre extends Modele
     function setOffre($offre)
     {
         $sql = 'INSERT INTO offres (antique_id,utilisateur_id,prix_propose,dateOffre) VALUES (?, ?, ?, NOW())';
-        $offres = $this->executerRequete($sql, array($offre));
+        $offres = $this->executerRequete($sql, [$offre['antique_id'], $offre['user_id'], $offre['prix_propose']]);
         return $offres;
     }
     function supprimerOffre($id_offre)

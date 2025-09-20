@@ -1,8 +1,6 @@
 <?php
 
-
-require_once 'Model/Antique.php';
-require_once 'Model/Offre.php';
+require_once 'Framework/Controleur.php';
 require_once 'Model/Utilisateur.php';
 
 class ControleurUtilisateurs extends Controleur
@@ -26,14 +24,14 @@ class ControleurUtilisateurs extends Controleur
         if ($this->requete->existeParametre("login") && $this->requete->existeParametre("mdp")) {
             $login = $this->requete->getParametre("login");
             $mdp = $this->requete->getParametre("mdp");
-            if ($this->utilisateur->connexion($login, $mdp)) {
-                $utilisateur = $this->utilisateur->getUtilisateurInfo($login, $mdp);
+            if ($this->utilisateur->connect($login, $mdp)) {
+                $utilisateur = $this->utilisateur->getUtilisateur($login, $mdp);
                 $this->requete->getSession()->setAttribut("utilisateur", $utilisateur);
                 // Éliminer un code d'erreur éventuel
                 if ($this->requete->getSession()->existeAttribut('erreur')) {
                     $this->requete->getsession()->setAttribut('erreur', '');
                 }
-                $this->rediriger("AdminAntiques");
+                $this->rediriger("AdminArticles");
             } else {
                 $this->requete->getSession()->setAttribut('erreur', 'mdp');
                 $this->rediriger('Utilisateurs');
@@ -44,9 +42,8 @@ class ControleurUtilisateurs extends Controleur
 
     public function deconnecter()
     {
-        $this->requete->getSession()->destroy();
+        $this->requete->getSession()->detruire();
         $this->rediriger("");
     }
 
 }
-

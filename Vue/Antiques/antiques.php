@@ -22,17 +22,17 @@ foreach ($offres as $offre): ?>
             Offre retiré le <?= $offre['dateOffre'] ?> par <?= $offre['nomUtil'] ?>. </p>
     <?php endif; ?>
 <?php endforeach; ?>
-<form action="Offres/offre" method="post">
+<form action="Offres/ajouter" method="post">
     <h2>Ajouter une offre</h2>
     <p>
-        <select name="utilisateur_id" id="utilisateur_id">
+        <select name="user_id" id="user_id">
             <?php foreach ($utils as $utilisateur): ?>
                 <option value="<?= $utilisateur['id'] ?>"><?= $utilisateur['nom'] ?></option>
             <?php endforeach; ?>
         </select>
         <br> <br>
-        <label for="prix_propose">Prix Proposé</label> : <input type="number" name="prix_propose" id="prix_propose"
-            required /><br />
+        <label for="prix">Prix Proposé</label> : <input type="number" name="prix" id="prix"
+            min="<?= $antique['prix'] ?>" required /><br />
         <input type="hidden" name="antique_id" value="<?= $antique['id'] ?>" /><br />
         <input type="submit" value="Proposer" />
     </p>

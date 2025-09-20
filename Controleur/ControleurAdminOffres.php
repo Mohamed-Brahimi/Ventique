@@ -1,7 +1,8 @@
 <?php
-require_once 'Model/Offre.php';
 
-class ControleurOffres extends Controleur
+require_once 'Framework/Controleur';
+
+class ControleurAdminOffres extends Controleur
 {
     private $offre;
 
@@ -31,13 +32,13 @@ class ControleurOffres extends Controleur
     public function ajouter()
     {
 
-        $offre['antique_id'] = $this->requete->getParametreId('antique_id');
-        $offre['user_id'] = $this->requete->getParametreId('user_id');
-        $offre['prix_propose'] = $this->requete->getParametreId('prix');
-        $this->offre->setOffre($offre);
-        $this->rediriger('Antiques', 'antiques/' . $offre['article_id']);
+        $offres['antique_id'] = $this->requete->getParametreId('antique_id');
+        $offres['user_id'] = $this->requete->getParametreId('user_id');
+        $offres['prix_propose'] = $this->requete->getParametreId('prix');
+
+        $offres['dateOffre'] = date('Y-m-d');
     }
-    public function confirmer()
+    public function supprimer()
     {
         $id = $this->requete->getParametreId("id");
         // Lire le commentaire afin d'obtenir le id de l'article associé

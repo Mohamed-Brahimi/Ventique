@@ -20,18 +20,18 @@ class Vue
     }
 
     // Génère et affiche la vue
-    public function generer($donnees = NULL)
+    public function generer($donnees)
     {
-        // Génération de la partie spécifique de la vue
         $contenu = $this->genererFichier($this->fichier, $donnees);
         $racineWeb = Configuration::get("racineWeb", "/");
-        // Génération du gabarit commun utilisant la partie spécifique
-        $vue = $this->genererFichier('Vue/gabarit.php', array(
+        $donnees_gabarit = [
             'titre' => $this->titre,
             'contenu' => $contenu,
-            'racineWeb' => $racineWeb
-        ));
-        // Renvoi de la vue au navigateur
+            'racineWeb' => $racineWeb,
+        ];
+        if (isset($donnees['utilisateur']))
+            $donnees_gabarit['utilisateur'] = $donnees['utilisateur'];
+        $vue = $this->genererFichier('Vue/gabarit.php', $donnees_gabarit);
         echo $vue;
     }
 
