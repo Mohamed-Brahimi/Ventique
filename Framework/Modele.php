@@ -12,7 +12,7 @@ abstract class Modele
         }
         return $result;
     }
-    private static function getBdd()
+    private static function getBdd(): PDO
     {
         if (self::$bdd === null) {
             $dsn = Configuration::get("dsn");

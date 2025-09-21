@@ -9,6 +9,6 @@
 
 </article>
 <form action="Adminoffres/supprimer/<?= $offre['id'] ?>" method="post">
-    <input type="submit" value="Confirmer">
-    <a href="Adminantiques/antiques/<?= $offre['id'] ?>"><input type="button" value="Annuler"></a>
+    <input type="submit" value="Confirmer" class="button">
+    <a href="Adminantiques/antiques/<?= $offre['id'] ?>"><input class="button" type="button" value="Annuler"></a>
 </form>
