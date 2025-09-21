@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le : jeu. 28 août 2025 à 19:29
+-- Généré le : mer. 17 sep. 2025 à 17:22
 -- Version du serveur : 8.0.43
 -- Version de PHP : 8.2.29
 
@@ -43,7 +43,9 @@ CREATE TABLE `antiques` (
 INSERT INTO `antiques` (`id`, `utilisateur_id`, `nom`, `prix`, `description`, `image`) VALUES
 (2, 2, 'Vase Grecque', 102, 'C\'est un vase représentant la mort de Chronos', 'image.png'),
 (3, 1, 'Vase Grecque', 100, 'C\'est un vase représentant la mort de Médusa', 'image.png'),
-(6, 1, 'Vase Romain', 100, 'C\'est un vase représentant la mort de Saturne', 'image.png');
+(6, 1, 'Vase Romain', 100, 'C\'est un vase représentant la mort de Saturne', 'image.png'),
+(7, 1, 'Holy', 213, 'It had the blood of jesus frfr', 'image.png'),
+(8, 1, 'Holy Grail', 321, 'it might be jesus', 'image.png');
 
 -- --------------------------------------------------------
 
@@ -56,21 +58,23 @@ CREATE TABLE `offres` (
   `utilisateur_id` int NOT NULL,
   `antique_id` int NOT NULL,
   `prix_propose` decimal(10,0) NOT NULL,
-  `dateOffre` date NOT NULL
+  `dateOffre` date NOT NULL,
+  `efface` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `offres`
 --
 
-INSERT INTO `offres` (`id`, `utilisateur_id`, `antique_id`, `prix_propose`, `dateOffre`) VALUES
-(1, 1, 3, 123, '2025-08-28'),
-(2, 2, 3, 123, '2025-08-28'),
-(3, 2, 2, 10, '2025-08-28'),
-(4, 2, 2, 10, '2025-08-28'),
-(11, 2, 3, 10, '2025-08-28'),
-(12, 1, 2, 100, '2025-08-28'),
-(13, 1, 2, 100, '2025-08-28');
+INSERT INTO `offres` (`id`, `utilisateur_id`, `antique_id`, `prix_propose`, `dateOffre`, `efface`) VALUES
+(4, 2, 2, 10, '2025-08-28', 0),
+(13, 1, 2, 100, '2025-08-28', 0),
+(17, 2, 2, 23, '2025-08-29', 0),
+(22, 1, 2, 3, '2025-09-04', 0),
+(23, 1, 6, 213, '2025-09-04', 0),
+(24, 1, 2, 132, '2025-09-04', 0),
+(25, 1, 2, 2, '2025-09-04', 0),
+(26, 1, 6, 21, '2025-09-04', 0);
 
 -- --------------------------------------------------------
 
@@ -91,7 +95,8 @@ CREATE TABLE `utilisateurs` (
 
 INSERT INTO `utilisateurs` (`id`, `nom`, `email`, `password`) VALUES
 (1, 'Mohamed A', 'mohare@gmail.com', 'Password'),
-(2, 'Mohamed', 'mohare@gmail.com', 'Password');
+(2, 'Mohamed', 'mohare@gmail.com', 'Password'),
+(3, 'Lucas', 'mohare@gmail.com', 'Password');
 
 --
 -- Index pour les tables déchargées
@@ -126,19 +131,19 @@ ALTER TABLE `utilisateurs`
 -- AUTO_INCREMENT pour la table `antiques`
 --
 ALTER TABLE `antiques`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT pour la table `offres`
 --
 ALTER TABLE `offres`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT pour la table `utilisateurs`
 --
 ALTER TABLE `utilisateurs`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Contraintes pour les tables déchargées
