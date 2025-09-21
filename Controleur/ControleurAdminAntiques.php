@@ -28,7 +28,7 @@ class ControleurAdminAntiques extends Controleur
     public function antiques()
     {
         $idAntique = $this->requete->getParametreId("id");
-        var_dump($idAntique);
+        // var_dump($idAntique);
 
         $antique = $this->antique->getAntique($idAntique);
         $erreur = $this->requete->getSession()->existeAttribut("erreur") ? $this->requete->getsession()->getAttribut("erreur") : '';
