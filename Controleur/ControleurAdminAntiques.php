@@ -63,7 +63,7 @@ class ControleurAdminAntiques extends Controleur
     }
     public function modifier()
     {
-        var_dump($this->requete);
+        //var_dump($this->requete);
         $antique['id'] = $this->requete->getParametre('id');
         $antique['nom'] = $this->requete->getParametre('nom');
         $antique['description'] = $this->requete->getParametre('description');
