@@ -18,21 +18,29 @@
 </header>
 
 <?php foreach ($offres as $offre): ?>
-    <?php if ($offre['utilisateur_id'] == $_SESSION["utilisateur"]['id']): ?>
-        <?php if ($offre['efface'] == 0): ?>
-            <p><a href='AdminOffres/confirmer/<?= $this->nettoyer($offre['id']) ?>'>[supprimer]</a>
-                <?= $offre['dateOffre'] ?>             <?= $offre['nomUtil'] ?> : <?= $offre['prix_propose'] ?> $</p>
-        <?php else: ?>
-            <p><a href='AdminOffres/retablir/<?= $this->nettoyer($offre['id']) ?>'>[restaurer]</a>
-                Offre retiré le <?= $offre['dateOffre'] ?> par <?= $offre['nomUtil'] ?>. </p>
-        <?php endif; ?>
-    <?php else: ?>
-        <p>
+    <div class="container-offres-enchere">
+        <?php if ($offre['utilisateur_id'] == $_SESSION["utilisateur"]['id']): ?>
             <?php if ($offre['efface'] == 0): ?>
-
-                <?= $offre['dateOffre'] ?>             <?= $offre['nomUtil'] ?> : <?= $offre['prix_propose'] ?> $
+                <p>
+                    <a href='AdminOffres/confirmer/<?= $this->nettoyer($offre['id']) ?>'>[supprimer]</a>
+                    <?= $offre['dateOffre'] ?>             <?= $offre['nomUtil'] ?> : <?= $offre['prix_propose'] ?> $
+                </p>
+            <?php else: ?>
+                <p>
+                    <a href='AdminOffres/retablir/<?= $this->nettoyer($offre['id']) ?>'>[restaurer]</a>
+                    Offre retiré le <?= $offre['dateOffre'] ?> par <?= $offre['nomUtil'] ?>.
+                </p>
             <?php endif; ?>
-        </p> <?php endif; ?> <?php endforeach; ?>
+        <?php else: ?>
+            <?php if ($offre['efface'] == 0): ?>
+                <p>
+
+                    <?= $offre['dateOffre'] ?>             <?= $offre['nomUtil'] ?> : <?= $offre['prix_propose'] ?> $
+                </p>
+
+            <?php endif; ?>
+        <?php endif; ?>
+    </div><?php endforeach; ?>
 <form action="AdminOffres/ajouter" method="post">
     <h2>Ajouter une offre</h2>
     <p>

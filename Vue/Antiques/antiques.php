@@ -15,11 +15,13 @@
 <?php
 
 foreach ($offres as $offre): ?>
-    <div class="container-offres-enchere">
+    <?php if ($offre['efface'] == 0): ?>
+
+        <div class="container-offres-enchere">
             <p>
-                <?= $offre['dateOffre'] ?>         
+                <?= $offre['dateOffre'] ?>
                 <?= $offre['nomUtil'] ?> : <?= $offre['prix_propose'] ?> $
             </p>
-    </div>
-    
+        </div>
+    <?php endif; ?>
 <?php endforeach; ?>
