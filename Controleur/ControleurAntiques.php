@@ -20,12 +20,9 @@ class ControleurAntiques extends Controleur
 
     public function index()
     {
-        try {
-            $antiques = $this->antique->getAntiques();
-            $this->genererVue(['antiques' => $antiques]);
-        } catch (Exception $e) {
-            $this->erreur($e->getMessage());
-        }
+        $antiques = $this->antique->getAntiques();
+        $this->genererVue(['antiques' => $antiques]);
+
     }
 
     public function antiques()
@@ -35,7 +32,7 @@ class ControleurAntiques extends Controleur
 
         $antique = $this->antique->getAntique($idAntique);
         $erreur = $this->requete->getSession()->existeAttribut("erreur") ? $this->requete->getsession()->getAttribut("erreur") : '';
-        $offres = $this->offre->getOffre($idAntique);
+        $offres = $this->offre->getOffres($idAntique);
         $utils = $this->utils->getUtilisateurs();
         $this->genererVue(['antique' => $antique, 'offres' => $offres, 'utils' => $utils, 'erreur' => $erreur]);
     }

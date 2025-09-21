@@ -1,4 +1,11 @@
+.lora-type {
+  font-family: "Lora";
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
 body {
+  font-family: "Lora";
   background-color: #f9e0bb;
   margin: 0px;
   color: #2e1d19;
@@ -49,13 +56,32 @@ body a {
   border-radius: 4px;
   font-size: 20px;
   color: #f9e0bb;
+  margin: 10px;
 }
-
+.button-list {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+.button {
+  font-family: Arial, Helvetica, sans-serif;
+  text-decoration: none;
+  background-color: #573831;
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 20px;
+  color: #f9e0bb;
+  font-weight: normal;
+  cursor: pointer;
+}
 .antique {
+  border: #2e1d19 3px solid;
+  flex-basis: 500px;
   background-color: #edc58a;
+  min-width: 500px;
   border-radius: 10px;
   padding: 1px 14px;
-  margin: 6px;
+  margin: 10px;
 }
 .antique-header * {
   margin: 8px;
@@ -70,6 +96,7 @@ body a {
 }
 .container-antiques {
   display: flex;
+  min-width: 500px;
   flex-direction: row;
   flex-wrap: wrap;
 }
@@ -128,4 +155,22 @@ body a {
 
 .form-row label {
   width: 120px;
+}
+
+#connexion {
+  border: 2px solid #edc58a;
+
+  border-radius: 8px;
+  margin-left: auto;
+  float: right;
+}
+#footer {
+  background-color: #2e1d19;
+  color: rgb(236, 203, 159);
+  text-align: center;
+  padding: 10px 0 80px 0;
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  margin-top: 16px;
 }

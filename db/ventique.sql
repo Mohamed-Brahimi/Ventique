@@ -2,10 +2,10 @@
 -- version 5.2.2
 -- https://www.phpmyadmin.net/
 --
--- Hôte : localhost
--- Généré le : mer. 17 sep. 2025 à 17:22
--- Version du serveur : 8.0.43
--- Version de PHP : 8.2.29
+-- Host: localhost
+-- Generation Time: Sep 21, 2025 at 11:04 PM
+-- Server version: 8.0.43
+-- PHP Version: 8.2.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,26 +18,26 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `ventique`
+-- Database: `ventique`
 --
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `antiques`
+-- Table structure for table `antiques`
 --
 
 CREATE TABLE `antiques` (
   `id` int NOT NULL,
   `utilisateur_id` int NOT NULL,
-  `nom` varchar(30) COLLATE utf8mb4_general_ci NOT NULL,
+  `nom` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `prix` decimal(10,0) NOT NULL,
-  `description` text COLLATE utf8mb4_general_ci NOT NULL,
-  `image` text COLLATE utf8mb4_general_ci NOT NULL
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `image` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Déchargement des données de la table `antiques`
+-- Dumping data for table `antiques`
 --
 
 INSERT INTO `antiques` (`id`, `utilisateur_id`, `nom`, `prix`, `description`, `image`) VALUES
@@ -45,12 +45,14 @@ INSERT INTO `antiques` (`id`, `utilisateur_id`, `nom`, `prix`, `description`, `i
 (3, 1, 'Vase Grecque', 100, 'C\'est un vase représentant la mort de Médusa', 'image.png'),
 (6, 1, 'Vase Romain', 100, 'C\'est un vase représentant la mort de Saturne', 'image.png'),
 (7, 1, 'Holy', 213, 'It had the blood of jesus frfr', 'image.png'),
-(8, 1, 'Holy Grail', 321, 'it might be jesus', 'image.png');
+(8, 1, 'Holy Grail', 321, 'it might be jesus', 'image.png'),
+(9, 5, 'asd', 321, 'Hope', 'image.png'),
+(10, 5, 'asdd', 321, 'Hope', 'image.png');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `offres`
+-- Table structure for table `offres`
 --
 
 CREATE TABLE `offres` (
@@ -63,7 +65,7 @@ CREATE TABLE `offres` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Déchargement des données de la table `offres`
+-- Dumping data for table `offres`
 --
 
 INSERT INTO `offres` (`id`, `utilisateur_id`, `antique_id`, `prix_propose`, `dateOffre`, `efface`) VALUES
@@ -74,43 +76,55 @@ INSERT INTO `offres` (`id`, `utilisateur_id`, `antique_id`, `prix_propose`, `dat
 (23, 1, 6, 213, '2025-09-04', 0),
 (24, 1, 2, 132, '2025-09-04', 0),
 (25, 1, 2, 2, '2025-09-04', 0),
-(26, 1, 6, 21, '2025-09-04', 0);
+(26, 1, 6, 21, '2025-09-04', 0),
+(27, 1, 7, 214, '2025-09-20', 0),
+(28, 1, 8, 322, '2025-09-20', 0),
+(29, 1, 8, 322, '2025-09-20', 0),
+(30, 1, 8, 322, '2025-09-20', 0),
+(31, 1, 8, 322, '2025-09-20', 0),
+(32, 1, 8, 322, '2025-09-20', 0),
+(33, 1, 8, 322, '2025-09-20', 0),
+(34, 1, 8, 322, '2025-09-20', 0),
+(35, 1, 8, 325, '2025-09-20', 0),
+(36, 1, 10, 2122, '2025-09-20', 1),
+(37, 5, 10, 322, '2025-09-21', 0);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `utilisateurs`
+-- Table structure for table `utilisateurs`
 --
 
 CREATE TABLE `utilisateurs` (
   `id` int NOT NULL,
-  `nom` varchar(30) COLLATE utf8mb4_general_ci NOT NULL,
-  `email` varchar(30) COLLATE utf8mb4_general_ci NOT NULL,
-  `password` varchar(30) COLLATE utf8mb4_general_ci NOT NULL
+  `nom` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `email` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `password` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Déchargement des données de la table `utilisateurs`
+-- Dumping data for table `utilisateurs`
 --
 
 INSERT INTO `utilisateurs` (`id`, `nom`, `email`, `password`) VALUES
-(1, 'Mohamed A', 'mohare@gmail.com', 'Password'),
-(2, 'Mohamed', 'mohare@gmail.com', 'Password'),
-(3, 'Lucas', 'mohare@gmail.com', 'Password');
+(1, 'Mohamed A', 'mohare1@gmail.com', 'Password'),
+(2, 'Mohamed', 'mohare2@gmail.com', 'Password'),
+(3, 'Lucas', 'mohare3@gmail.com', 'Password'),
+(5, 'MohTset', 'bramo@gmail.com', 'Pas');
 
 --
--- Index pour les tables déchargées
+-- Indexes for dumped tables
 --
 
 --
--- Index pour la table `antiques`
+-- Indexes for table `antiques`
 --
 ALTER TABLE `antiques`
   ADD PRIMARY KEY (`id`),
   ADD KEY `utilisateur_id` (`utilisateur_id`) USING BTREE;
 
 --
--- Index pour la table `offres`
+-- Indexes for table `offres`
 --
 ALTER TABLE `offres`
   ADD PRIMARY KEY (`id`),
@@ -118,45 +132,59 @@ ALTER TABLE `offres`
   ADD KEY `antique_id` (`antique_id`) USING BTREE;
 
 --
--- Index pour la table `utilisateurs`
+-- Indexes for table `utilisateurs`
 --
 ALTER TABLE `utilisateurs`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT pour les tables déchargées
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT pour la table `antiques`
+-- AUTO_INCREMENT for table `antiques`
 --
 ALTER TABLE `antiques`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT pour la table `offres`
+-- AUTO_INCREMENT for table `offres`
 --
 ALTER TABLE `offres`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
--- AUTO_INCREMENT pour la table `utilisateurs`
+-- AUTO_INCREMENT for table `utilisateurs`
 --
 ALTER TABLE `utilisateurs`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- Contraintes pour les tables déchargées
+-- Constraints for dumped tables
 --
 
 --
--- Contraintes pour la table `antiques`
+-- Constraints for table `antiques`
 --
 ALTER TABLE `antiques`
   ADD CONSTRAINT `antiques_ibfk_1` FOREIGN KEY (`utilisateur_id`) REFERENCES `utilisateurs` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `offres`
+-- Constraints for table `offres`
+--
+ALTER TABLE `offres`
+  ADD CONSTRAINT `offres_ibfk_1` FOREIGN KEY (`utilisateur_id`) REFERENCES `utilisateurs` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE,
+  ADD CONSTRAINT `offres_ibfk_2` FOREIGN KEY (`antique_id`) REFERENCES `antiques` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+ALTER TABLE `antiques`
+  ADD CONSTRAINT `antiques_ibfk_1` FOREIGN KEY (`utilisateur_id`) REFERENCES `utilisateurs` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `offres`
 --
 ALTER TABLE `offres`
   ADD CONSTRAINT `offres_ibfk_1` FOREIGN KEY (`utilisateur_id`) REFERENCES `utilisateurs` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE,

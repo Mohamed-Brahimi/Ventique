@@ -32,7 +32,7 @@ class ControleurAdminAntiques extends Controleur
 
         $antique = $this->antique->getAntique($idAntique);
         $erreur = $this->requete->getSession()->existeAttribut("erreur") ? $this->requete->getsession()->getAttribut("erreur") : '';
-        $offres = $this->offre->getOffre($idAntique);
+        $offres = $this->offre->getOffres($idAntique);
         $utils = $this->utils->getUtilisateurs();
         $this->genererVue(['antique' => $antique, 'offres' => $offres, 'utils' => $utils, 'erreur' => $erreur]);
     }
@@ -42,7 +42,16 @@ class ControleurAdminAntiques extends Controleur
         $vue = new Vue('ajoutAntique');
         $this->genererVue();
     }
+    public function modifierAntique()
+    {
+        $idAntique = $this->requete->getParametreId("id");
+        // var_dump($idAntique);
 
+        $antique = $this->antique->getAntique($idAntique);
+        $erreur = $this->requete->getSession()->existeAttribut("erreur") ? $this->requete->getsession()->getAttribut("erreur") : '';
+        $this->genererVue(['antique' => $antique, 'erreur' => $erreur]);
+
+    }
     public function ajouter()
     {
         $antique['utilisateur_id'] = $_SESSION["utilisateur"]['id'];
@@ -50,6 +59,17 @@ class ControleurAdminAntiques extends Controleur
         $antique['description'] = $this->requete->getParametre('description');
         $antique['prix'] = $this->requete->getParametre('prix');
         $this->antique->setAntique($antique);
+        $this->executerAction(action: 'index');
+    }
+    public function modifier()
+    {
+        var_dump($this->requete);
+        $antique['id'] = $this->requete->getParametre('id');
+        $antique['nom'] = $this->requete->getParametre('nom');
+        $antique['description'] = $this->requete->getParametre('description');
+        $antique['prix'] = $this->requete->getParametre('prix');
+        $this->antique->updateAntiques($antique);
+
         $this->executerAction(action: 'index');
     }
 

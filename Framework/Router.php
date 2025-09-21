@@ -39,18 +39,14 @@ class Router
         }
     }
 
-    /**
-     * Instancie le contrôleur approprié en fonction de la requête reçue
-     * 
-     * @param Requete $requete Requête reçue
-     * @return / Instance d'un contrôleur
-     * @throws Exception / Si la création du contrôleur échoue
-     */
+
     private function creerControleur(Requete $requete)
     {
-        // Grâce à la redirection, toutes les URL entrantes sont du type :
-        // index.php?controleur=XXX&action=YYY&id=ZZZ
+
         $ctrlAccueil = Configuration::get("defaut");
+        if ($requete->getSession()->existeAttribut("utilisateur")) {
+            $ctrlAccueil = 'Admin' . $ctrlAccueil;
+        }
         $controleur = $ctrlAccueil;  // Contrôleur par défaut
         if ($requete->existeParametre('controleur')) {
             $controleur = $requete->getParametre('controleur');

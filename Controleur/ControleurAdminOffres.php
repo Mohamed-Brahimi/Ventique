@@ -13,12 +13,12 @@ class ControleurAdminOffres extends Controleur
     public function index()
     {
         $offres = $this->offre->getAllOffres();
-        $this->genererVue(['list_offres' => $offres]);
+        $this->genererVue(['offres' => $offres]);
     }
 
     public function getOffresByAntiqueId($idAntique)
     {
-        $offres = $this->offre->getOffre($idAntique);
+        $offres = $this->offre->getOffres($idAntique);
         $this->genererVue(['offres' => $offres]);
     }
 
@@ -31,22 +31,20 @@ class ControleurAdminOffres extends Controleur
     }
     public function ajouter()
     {
+        $offres['user_id'] = $_SESSION["utilisateur"]['id'];
 
         $offres['antique_id'] = $this->requete->getParametreId('antique_id');
-        $offres['user_id'] = $_SESSION["utilisateur"]['id'];
         $offres['prix_propose'] = $this->requete->getParametreId('prix');
-
+        $this->offre->setOffre($offres);
         $this->rediriger(controleur: 'AdminAntiques', action: 'antiques/' . $offres['antique_id']);
 
     }
     public function confirmer()
     {
         $id = $this->requete->getParametreId("id");
-        // Lire le commentaire afin d'obtenir le id de l'article associé
-        $offre = $this->offre->getOffre($id);
-        // Supprimer le commentaire à l'aide du modèle
         $this->offre->supprimerOffre($id);
-        $this->rediriger(controleur: 'AdminAntiques', action: 'antiques/' . $offre['antique_id']);
+
+        $this->rediriger(controleur: 'AdminAntiques');
 
     }
 
@@ -54,12 +52,9 @@ class ControleurAdminOffres extends Controleur
     public function retablir()
     {
         $id = $this->requete->getParametreId("id");
-        // Lire le commentaire afin d'obtenir le id de l'article associé
-        $offre = $this->offre->getOffre($id);
-        // Supprimer le commentaire à l'aide du modèle
         $this->offre->retablirOffre($id);
-            $this->rediriger(controleur: 'AdminAntiques', action: 'antiques/' . $offre['antique_id']);
-
+        $this->rediriger(controleur: 'AdminAntiques');
+        exit();
 
     }
 }

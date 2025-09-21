@@ -5,6 +5,10 @@
     <meta charset="UTF-8">
     <base href="<?= $racineWeb ?>">
     <title><?= $titre ?> </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
+
     <link rel='stylesheet' type='text/css' href='Style/style.css' />
 
 </head>
@@ -16,22 +20,35 @@
                 <h1 id="titreSite">Ventique</h1>
             </a>
             <p>Bienvenue au enchère d'objets antiques</p>
-            <a href="<?= isset($_SESSION['utilisateur']) ? 'Admin' : ''; ?>Offres">
-                <h4>Afficher toutes les offres de toutes les antiques</h4>
-            </a>
             <?php if (isset($_SESSION['utilisateur'])): ?>
-                <h3>Bonjour <?= $_SESSION['utilisateur']['nom'] ?>,
-                    <a href="Utilisateurs/deconnecter"><small>[Se déconnecter]</small></a>
-                </h3>
-            <?php else: ?>
-                <h3>[<a href="Utilisateurs/index">Se connecter</a>] <small>(admin/admin)</small></h3>
+                <a href="AdminOffres/index">
+                    <h4>Afficher toutes les offres de tous les articles</h4>
+                </a>
             <?php endif; ?>
+            <div id="connexion">
+                <?php if (isset($_SESSION['utilisateur'])): ?>
+                    <a href="Utilisateurs/deconnecter">
+                        <h3>Bonjour <?= $_SESSION['utilisateur']['nom'] ?>,
+                            <small>Se déconnecter</small>
+                    </a>
+                    </h3>
+                <?php else: ?>
+                    <a href="Utilisateurs/index">
+                        <h3>Se connecter<small></small></h3>
+                    <?php endif; ?>
+            </div>
+
+            </a>
+
         </header>
         <div id="contenu">
             <?= $contenu ?>
         </div>
         <footer id="footer">
-            Footer
+            <p>Ventique &copy; 2025</p>
+            <a style="color: rgb(236, 203, 159);" href="Apropos/index">
+                <p>À propos</p>
+            </a>
         </footer>
     </div>
 </body>

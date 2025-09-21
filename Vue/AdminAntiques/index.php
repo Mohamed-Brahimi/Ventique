@@ -1,19 +1,22 @@
 <a href="AdminAntiques/ajoutAntique" id="linkAjouterAntique">Ajouter une antique</a>
+<div class="container-antiques">
 
-<?php var_dump($_SESSION["utilisateur"]); ?>
-<?php
-foreach ($antiques as $antique)
-: ?>
+    <?php
+    foreach ($antiques as $antique)
+    : ?>
 
 
-    <antique>
-        <header>
-            <a href="<?= "AdminAntiques/antiques/" . $antique['id'] ?>">
-                <h1 class="nomAntique"><?= $antique['nom'] ?></h1>
-            </a>
-            <h3 class="descAntique"><?= $antique['description'] ?></h3>
+        <antique>
+            <div class="antique">
+                <header class="antique-header">
+                    <a href="<?= "AdminAntiques/antiques" . $antique['id'] ?>">
+                        <h1 class="antique-nom"><?= $antique['nom'] ?></h1>
+                    </a>
+                    <h3 class="antique-desc"><?= $antique['description'] ?></h3>
 
-        </header>
-        <p><?= $antique['prix'] ?>$</p>
-    </antique>
-<?php endforeach; ?>
+                </header>
+                <p class="antique-prix"><?= $antique['prix'] ?>$</p>
+            </div>
+        </antique>
+    <?php endforeach; ?>
+</div>

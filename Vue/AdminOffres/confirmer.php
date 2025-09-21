@@ -1,7 +1,6 @@
 <?php $this->$titre = "Supprimer l'offre"; ?>
 <article>
     <header>
-        <?= var_dump($offre) ?>
         <p>
         <h2>Supprimer ?</h2>
         <?= $offre['nomUtil'] ?>, offre : <?= $offre['prix_propose'] ?> </p>

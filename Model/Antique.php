@@ -26,4 +26,10 @@ class Antique extends Modele
         $antiques = $this->executerRequete($sql, [$antique['utilisateur_id'], $antique['nom'], $antique['description'], $antique['prix']]);
         return $antiques;
     }
+    function updateAntiques($antique)
+    {
+        $sql = "UPDATE antiques SET nom = ?, description = ?, prix = ? WHERE id = ?";
+        $antiques = $this->executerRequete($sql, [$antique['nom'], $antique['description'], $antique['prix'], $antique['id']]);
+        return $antiques;
+    }
 }

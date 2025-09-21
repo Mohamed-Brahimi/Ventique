@@ -5,17 +5,26 @@ class Offre extends Modele
 {
     function getAllOffres()
     {
-        $sql = "select * from offres ORDER BY id DESC";
+        $sql = "select offres.id,offres.antique_id, offres.utilisateur_id, offres.dateOffre, offres.prix_propose, offres.efface, utilisateurs.nom as nomUtil, antiques.nom as nom_antique
+     from offres INNER JOIN utilisateurs on offres.utilisateur_id = utilisateurs.id INNER JOIN antiques on offres.antique_id = antiques.id ORDER BY dateOffre DESC";
         $offres = $this->executerRequete($sql);
-        return $offres->fetch();
+        return $offres->fetchAll();
     }
     // Retourne une offre selon l'id antique spécifié
-    function getOffre($id)
+    function getOffres($id)
     {
-        $sql = "select offres.id, offres.dateOffre, offres.prix_propose, offres.efface, utilisateurs.nom as nomUtil
+        $sql = "select offres.id,offres.antique_id, offres.utilisateur_id, offres.dateOffre, offres.prix_propose, offres.efface, utilisateurs.nom as nomUtil
      from offres INNER JOIN utilisateurs on offres.utilisateur_id = utilisateurs.id where antique_id LIKE ? ORDER BY dateOffre DESC";
         $offres = $this->executerRequete($sql, array($id));
         $resultat = $offres->fetchAll();
+        return $resultat;
+    }
+    function getOffre($id)
+    {
+        $sql = "select * from offres where id LIKE ? ";
+        $offres = $this->executerRequete($sql, array($id));
+        $resultat = $offres->fetchAll();
+
         return $resultat;
     }
 

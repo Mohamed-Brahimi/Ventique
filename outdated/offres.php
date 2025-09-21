@@ -4,7 +4,7 @@ require 'Modele.php';
 try {
     if (isset($_POST['antique_id'])) {
         $uid = intval($_POST['utilisateur_id']);
-        var_dump($uid);
+        //var_dump($uid);
         if ($uid != 0) {
             $id = intval($_POST['antique_id']);
             if ($id != 0) {

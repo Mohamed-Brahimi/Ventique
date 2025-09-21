@@ -75,12 +75,7 @@ abstract class Controleur
         $vue->generer($donneesVue);
     }
 
-    /**
-     * Effectue une redirection vers un contrôleur et une action spécifiques
-     * 
-     * @param string $controleur Contrôleur
-     * @param type $action Action Action
-     */
+
     protected function rediriger($controleur = null, $action = null)
     {
         $racineWeb = Configuration::get("racineWeb", "/");
