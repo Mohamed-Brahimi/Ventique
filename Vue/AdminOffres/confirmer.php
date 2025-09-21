@@ -9,7 +9,7 @@
     </header>
 
 </article>
-<form action="index.php?action=supprimerOffre&id=<?= $offre['id'] ?>&aid=<?= $antique['id'] ?>" method="post">
+<form action="Adminoffres/supprimer/<?= $offre['id'] ?>" method="post">
     <input type="submit" value="Confirmer">
-    <a href="index.php?action=antique&id=<?= $antique['id'] ?>"><input type="button" value="Annuler"></a>
+    <a href="Adminantiques/antiques/<?= $offre['id'] ?>"><input type="button" value="Annuler"></a>
 </form>

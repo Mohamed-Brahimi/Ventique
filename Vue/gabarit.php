@@ -16,11 +16,11 @@
                 <h1 id="titreSite">Ventique</h1>
             </a>
             <p>Bienvenue au enchère d'objets antiques</p>
-            <a href="<?= $utilisateur != null ? 'Admin' : ''; ?>Offres">
+            <a href="<?= isset($_SESSION['utilisateur']) ? 'Admin' : ''; ?>Offres">
                 <h4>Afficher toutes les offres de toutes les antiques</h4>
             </a>
-            <?php if (isset($utilisateur)): ?>
-                <h3>Bonjour <?= $utilisateur['nom'] ?>,
+            <?php if (isset($_SESSION['utilisateur'])): ?>
+                <h3>Bonjour <?= $_SESSION['utilisateur']['nom'] ?>,
                     <a href="Utilisateurs/deconnecter"><small>[Se déconnecter]</small></a>
                 </h3>
             <?php else: ?>

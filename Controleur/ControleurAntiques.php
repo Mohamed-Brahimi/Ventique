@@ -40,7 +40,7 @@ class ControleurAntiques extends Controleur
         $this->genererVue(['antique' => $antique, 'offres' => $offres, 'utils' => $utils, 'erreur' => $erreur]);
     }
 
-    public function nouvelAntique()
+    public function ajoutAntique()
     {
         $this->genererVue();
     }

@@ -1,6 +1,6 @@
 <?php
 
-require_once 'Framework/Controleur';
+require_once 'Model/Offre.php';
 
 class ControleurAdminOffres extends Controleur
 {
@@ -33,18 +33,21 @@ class ControleurAdminOffres extends Controleur
     {
 
         $offres['antique_id'] = $this->requete->getParametreId('antique_id');
-        $offres['user_id'] = $this->requete->getParametreId('user_id');
+        $offres['user_id'] = $_SESSION["utilisateur"]['id'];
         $offres['prix_propose'] = $this->requete->getParametreId('prix');
 
-        $offres['dateOffre'] = date('Y-m-d');
+        $this->rediriger(controleur: 'AdminAntiques', action: 'antiques/' . $offres['antique_id']);
+
     }
-    public function supprimer()
+    public function confirmer()
     {
         $id = $this->requete->getParametreId("id");
         // Lire le commentaire afin d'obtenir le id de l'article associé
         $offre = $this->offre->getOffre($id);
         // Supprimer le commentaire à l'aide du modèle
         $this->offre->supprimerOffre($id);
+        $this->rediriger(controleur: 'AdminAntiques', action: 'antiques/' . $offre['antique_id']);
+
     }
 
     // Rétablir un commentaire
@@ -55,6 +58,8 @@ class ControleurAdminOffres extends Controleur
         $offre = $this->offre->getOffre($id);
         // Supprimer le commentaire à l'aide du modèle
         $this->offre->retablirOffre($id);
+            $this->rediriger(controleur: 'AdminAntiques', action: 'antiques/' . $offre['antique_id']);
+
 
     }
 }

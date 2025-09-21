@@ -9,7 +9,7 @@ class Session
 
     public function getAttribut($nom)
     {
-        if (isset($_SESSION[$nom])) {
+        if ($this->existeAttribut($nom)) {
             return $_SESSION[$nom];
         } else {
             throw new Exception("Attribut '$nom' absent de la session");

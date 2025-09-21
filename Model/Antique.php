@@ -23,7 +23,7 @@ class Antique extends Modele
     function setAntique($antique)
     {
         $sql = 'INSERT INTO antiques (utilisateur_id,nom,description,prix,image) VALUES (?, ?, ?, ?, "image.png") ';
-        $antiques = $this->executerRequete($sql, array($antique));
+        $antiques = $this->executerRequete($sql, [$antique['utilisateur_id'], $antique['nom'], $antique['description'], $antique['prix']]);
         return $antiques;
     }
 }

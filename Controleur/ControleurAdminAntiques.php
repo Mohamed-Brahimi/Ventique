@@ -37,7 +37,7 @@ class ControleurAdminAntiques extends Controleur
         $this->genererVue(['antique' => $antique, 'offres' => $offres, 'utils' => $utils, 'erreur' => $erreur]);
     }
 
-    public function nouvelAntique()
+    public function ajoutAntique()
     {
         $vue = new Vue('ajoutAntique');
         $this->genererVue();
@@ -45,12 +45,12 @@ class ControleurAdminAntiques extends Controleur
 
     public function ajouter()
     {
-        $antique['utilisateur_id'] = $this->requete->getParametreId('utilisateur_');
+        $antique['utilisateur_id'] = $_SESSION["utilisateur"]['id'];
         $antique['nom'] = $this->requete->getParametre('nom');
         $antique['description'] = $this->requete->getParametre('description');
-        $antique['prix'] = $this->requete->getParametre('prix ');
+        $antique['prix'] = $this->requete->getParametre('prix');
         $this->antique->setAntique($antique);
-        $this->executerAction('index');
+        $this->executerAction(action: 'index');
     }
 
 

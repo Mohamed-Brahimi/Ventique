@@ -35,7 +35,7 @@ class ControleurOffres extends Controleur
         $offre['user_id'] = $this->requete->getParametreId('user_id');
         $offre['prix_propose'] = $this->requete->getParametreId('prix');
         $this->offre->setOffre($offre);
-        $this->rediriger('Antiques', 'antiques/' . $offre['article_id']);
+        $this->rediriger('AdminAntiques', 'antiques/' . $offre['anticle_id']);
     }
     public function confirmer()
     {
@@ -44,6 +44,8 @@ class ControleurOffres extends Controleur
         $offre = $this->offre->getOffre($id);
         // Supprimer le commentaire à l'aide du modèle
         $this->offre->supprimerOffre($id);
+        $this->rediriger(controleur: 'AdminAntiques', action:'antiques/' . $offre['anticle_id']);
+
     }
 
     // Rétablir un commentaire
