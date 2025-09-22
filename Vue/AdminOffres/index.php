@@ -3,19 +3,32 @@
 <?php foreach ($offres as $offre): ?>
     <?php if ($offre['utilisateur_id'] == $_SESSION["utilisateur"]['id']): ?>
         <?php if ($offre['efface'] == 0): ?>
-            <p><a href='AdminOffres/confirmer/<?= $this->nettoyer($offre['id']) ?>'>[supprimer]</a>
+            <p>
+                <a href='AdminOffres/confirmer/<?= $this->nettoyer($offre['id']) ?>'>[supprimer]</a>
                 <?= $offre['dateOffre'] ?>             <?= $offre['nomUtil'] ?> : <?= $offre['prix_propose'] ?> $
+
             <?php else: ?>
-            <p><a href='AdminOffres/retablir/<?= $this->nettoyer($offre['id']) ?>'>[restaurer]</a>
+            <p>
+                <a href='AdminOffres/retablir/<?= $this->nettoyer($offre['id']) ?>'>[restaurer]</a>
                 Offre retiré le <?= $offre['dateOffre'] ?> par <?= $offre['nomUtil'] ?>.
+
             <?php endif; ?>
-        <?php else: ?>
-        <p>
-            <?php if ($offre['efface'] == 0): ?>
+            <a href="<?= "AdminAntiques/antiques" . $offre['antique_id'] ?>">
+                Pour : <?= $offre['nom_antique'] ?>
+            </a>
+        </p>
+        <hr>
+    <?php else: ?>
+        <?php if ($offre['efface'] == 0): ?>
+            <p>
 
                 <?= $offre['dateOffre'] ?>             <?= $offre['nomUtil'] ?> : <?= $offre['prix_propose'] ?> $
-            <?php endif; ?>
+                <a href="<?= "AdminAntiques/antiques" . $offre['antique_id'] ?>">
+                    Pour : <?= $offre['nom_antique'] ?>
+                </a>
+            </p>
+            <hr>
         <?php endif; ?>
-        Pour : <?= $offre['nom_antique'] ?>
-    </p>
-    <hr><?php endforeach; ?>
+    <?php endif; ?>
+
+<?php endforeach; ?>
