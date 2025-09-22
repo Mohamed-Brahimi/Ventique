@@ -19,7 +19,7 @@
             <a href="">
                 <h1 id="titreSite">Ventique</h1>
             </a>
-            <p>Bienvenue au enchère d'objets antiques</p>
+            <p id="descSite">Bienvenue au enchère d'objets antiques</p>
             <?php if (isset($_SESSION['utilisateur'])): ?>
                 <a href="AdminOffres/index">
                     <h4>Afficher toutes les offres de tous les articles</h4>
@@ -44,6 +44,7 @@
         <div id="contenu">
             <?= $contenu ?>
         </div>
+        <div id="filler"></div>
         <footer id="footer">
             <p>Ventique &copy; 2025</p>
             <a style="color: rgb(236, 203, 159);" href="Apropos/index">
