@@ -1,11 +1,12 @@
 <antique>
     <div class="antique-enchere">
         <header>
-            <h1 class="antique-enchere-nom"><?= $antique['nom'] ?></h1>
-            <h3 class="antique-enchere-desc"><?= $antique['description'] ?></h3>
-            <h3 class="antique-enchere-util">offert par <?= $antique['nomUtil'] ?></h3>
-        </header>
-        <p class="antique-enchere-prix">Avec comme minimum : <?= $antique['prix'] ?> $</p>
+            <header>
+                <h1 class="nomAntique"><?= $this->nettoyer($antique['nom']) ?></h1>
+                <h3 class=""><?= $this->nettoyer($antique['description']) ?></h3>
+                <h3>offert par <?= $this->nettoyer($antique['nomUtil']) ?></h3>
+            </header>
+            <p>Avec comme minimum : <?= $antique['prix'] ?> $</p>
     </div>
 </antique>
 

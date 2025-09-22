@@ -10,12 +10,12 @@
             <div class="antique">
                 <header class="antique-header">
                     <a href="<?= "AdminAntiques/antiques" . $antique['id'] ?>">
-                        <h1 class="antique-nom"><?= $antique['nom'] ?></h1>
+                        <h1 class="antique-nom"><?= $this->nettoyer($antique['nom']) ?></h1>
                     </a>
-                    <h3 class="antique-desc"><?= $antique['description'] ?></h3>
+                    <h3 class="antique-desc"><?= $this->nettoyer($antique['description']) ?></h3>
 
                 </header>
-                <p class="antique-prix"><?= $antique['prix'] ?>$</p>
+                <p class="antique-prix"><?= $this->nettoyer($antique['prix']) ?>$</p>
             </div>
         </antique>
     <?php endforeach; ?>

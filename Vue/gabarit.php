@@ -4,12 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <base href="<?= $racineWeb ?>">
-    <title><?= $titre ?> </title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
 
     <link rel='stylesheet' type='text/css' href='Style/style.css' />
+    <title><?= $titre ?> </title>
 
 </head>
 
@@ -34,11 +34,12 @@
                     </h3>
                 <?php else: ?>
                     <a href="Utilisateurs/index">
-                        <h3>Se connecter<small></small></h3>
-                    <?php endif; ?>
+                        <h3>Se connecter</h3>
+                    </a>
+
+                <?php endif; ?>
             </div>
 
-            </a>
 
         </header>
         <div id="contenu">

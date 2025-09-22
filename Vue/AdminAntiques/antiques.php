@@ -1,8 +1,8 @@
 <antique>
     <header>
-        <h1 class="nomAntique"><?= $antique['nom'] ?></h1>
-        <h3 class=""><?= $antique['description'] ?></h3>
-        <h3>offert par <?= $antique['nomUtil'] ?></h3>
+        <h1 class="nomAntique"><?= $this->nettoyer($antique['nom']) ?></h1>
+        <h3 class=""><?= $this->nettoyer($antique['description']) ?></h3>
+        <h3>offert par <?= $this->nettoyer($antique['nomUtil']) ?></h3>
     </header>
     <p>Avec comme minimum : <?= $antique['prix'] ?> $</p>
 
