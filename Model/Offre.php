@@ -23,7 +23,7 @@ class Offre extends Modele
     {
         $sql = "select * from offres where id LIKE ? ";
         $offres = $this->executerRequete($sql, array($id));
-        $resultat = $offres->fetchAll();
+        $resultat = $offres->fetch();
 
         return $resultat;
     }

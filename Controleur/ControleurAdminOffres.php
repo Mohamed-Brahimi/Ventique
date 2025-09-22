@@ -43,8 +43,9 @@ class ControleurAdminOffres extends Controleur
     {
         $id = $this->requete->getParametreId("id");
         $this->offre->supprimerOffre($id);
-
-        $this->rediriger(controleur: 'AdminAntiques');
+        $offre = $this->offre->getOffre($id);
+        $antiqueId = $offre['antique_id'];
+        $this->rediriger(controleur: 'AdminAntiques', action: 'antiques/' . $antiqueId);
 
     }
 
@@ -53,7 +54,9 @@ class ControleurAdminOffres extends Controleur
     {
         $id = $this->requete->getParametreId("id");
         $this->offre->retablirOffre($id);
-        $this->rediriger(controleur: 'AdminAntiques');
+        $offre = $this->offre->getOffre($id);
+        $antiqueId = $offre['antique_id'];
+        $this->rediriger(controleur: 'AdminAntiques', action: 'antiques/' . $antiqueId);
         exit();
 
     }

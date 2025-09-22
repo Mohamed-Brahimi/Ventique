@@ -9,9 +9,10 @@
 </antique>
 
 <header>
+
     <?php if ($antique['utilisateur_id'] == $_SESSION["utilisateur"]['id']): ?>
 
-        <h2><a href='AdminAntiques/modifierAntique/<?= $this->nettoyer($antique['id']) ?>'>Modifier</a></h2>
+        <h2><a href='AdminAntiques/modifierAntique/<?= $this->nettoyer($antique['id']) ?>' class="button">Modifier</a></h2>
     <?php endif; ?>
     <hr>
     <h1 id="SectionOffre"> Offres : </h1>

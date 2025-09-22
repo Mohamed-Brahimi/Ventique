@@ -82,6 +82,7 @@ abstract class Controleur
         // Redirection vers l'URL /racine_site/controleur/action
         if ($controleur != null) {
             header("Location:" . $racineWeb . $controleur . "/" . $action);
+            var_dump($action);
         } else {
             header("Location:" . $racineWeb);
         }

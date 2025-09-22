@@ -1,4 +1,3 @@
-<?php $this->$titre = "Supprimer l'offre"; ?>
 <article>
     <header>
         <p>
